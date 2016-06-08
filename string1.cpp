@@ -49,19 +49,11 @@ void incword(char* s){
 int main(int argc, char const *argv[]){
 
 	int i{};
-
+	nodeptr p = NULL;
 	for(i = 0;i < NHASH;++i){
 		bin[i] = NULL;
 	}
 	char buf[1024] = {0};
-	nodeptr p = NULL;
-	
-	while(scanf("%s",buf) != EOF){
-	scanf("%s",buf);
-	}
-
-	// cin >> buf;
-	incword(buf);	
 	
 	while(scanf("%s",buf) != EOF)
 		incword(buf);
