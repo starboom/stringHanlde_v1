@@ -1,4 +1,10 @@
 #include <iostream>
+extern "C"{
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+}
+
 using namespace std;
 //在github上修改。
 typedef struct node * nodeptr;
@@ -9,21 +15,20 @@ typedef struct node{
 	nodeptr next;
 }node;
 
-#define NHASH 29989
-#define MULT  31
+#define NHASH 12
+#define MULT  13
 
 nodeptr bin[NHASH];
-
 /*function starts here*/
-unsigned int hash(char *p){
+unsigned int myhash(char *p){
 	unsigned int h = 0;
-	for(p;*p;++p){
+	for(;*p != '\0';++p){
 		h = MULT * h + *p;
 	}
 	return h % NHASH;
 }
 void incword(char* s){
-	h = hsah(s);
+	unsigned char h = myhash(s);
 	nodeptr p = NULL;
 	for(p = bin[h];p != NULL;p = p -> next){
 		if(strcmp(s,p -> word) == 0){
@@ -31,9 +36,9 @@ void incword(char* s){
 			return;
 		}
 	}
-	p = malloc(sizeof(nodeptr));
+	p = (nodeptr)malloc(sizeof(nodeptr));
 	p -> count = 1;
-	p -> word = malloc(strlen(s) + 1);
+	p -> word = (char*)malloc(strlen(s) + 1);
 	strcpy(p -> word,s);
 	p -> next = bin[h];
 	bin[h] = p;
@@ -44,9 +49,20 @@ void incword(char* s){
 int main(int argc, char const *argv[]){
 
 	int i{};
+
 	for(i = 0;i < NHASH;++i){
 		bin[i] = NULL;
 	}
+	char buf[1024] = {0};
+	nodeptr p = NULL;
+	
+	while(scanf("%s",buf) != EOF){
+	scanf("%s",buf);
+	}
+
+	// cin >> buf;
+	incword(buf);	
+	
 	while(scanf("%s",buf) != EOF)
 		incword(buf);
 	for(i = 0;i < NHASH;++i){
