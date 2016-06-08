@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-
+//在github上修改。
 typedef struct node * nodeptr;
 
 typedef struct node{
